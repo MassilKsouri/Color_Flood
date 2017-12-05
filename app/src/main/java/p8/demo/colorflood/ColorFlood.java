@@ -13,6 +13,10 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, Runnable {
@@ -37,7 +41,8 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     // tableau modelisant la carte du jeu
     // TODO gérer plusieurs cartes avec carte[0][i][j] pour 1ere carte, carte[1][i][j] pour 2eme carte etc...
-    int[][] carte;
+    Case[][] carte;
+    List<Case> caseActive;
 
     // ancres pour pouvoir centrer la carte du jeu
     int        carteTopAnchor;                   // coordonnées en Y du point d'ancrage de notre carte
@@ -67,11 +72,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     int [][] ref2    = createLevel(colors);
 
-
-
-    /* compteur et max pour animer les zones d'arriv�e des diamants */
-    int currentStepZone = 0;
-    int maxStepZone     = 4;
 
     // thread utiliser pour animer les zones de depot des diamants
     private     boolean in      = true;
@@ -139,27 +139,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         return  ref;
     }
 
-    // chargement du niveau a partir du tableau de reference du niveau
-    private void loadlevel( int a) {
-        // lvl 1
-        if (a==1){
-            for (int i=0; i< carteHeight; i++) {
-                for (int j=0; j< carteWidth; j++) {
-                    carte[j][i]= ref[j][i];
-                }
-            }
-        }
-        // lvl 2
-        else{
-            for (int i=0; i< carteHeight; i++) {
-                for (int j=0; j< carteWidth; j++) {
-                    carte[j][i]= ref2[j][i];
-                }
-            }
-
-        }
-    }
-
 
     // initialisation du jeu
     public void initparameters( int a) {
@@ -173,8 +152,14 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(3);
         paint.setTextAlign(Paint.Align.LEFT);
-        carte           = new int[carteHeight][carteWidth];
+        // creation de la carte
+        carte           = new Case[carteHeight][carteWidth];
         loadlevel(a);
+        caseActive = new ArrayList<Case>();
+        regroup();
+        // crée le premier point actif
+        carte[0][0].active = true;
+        caseActive.add(carte[0][0]);
         carteTopAnchor  = (getHeight()- carteHeight*carteTileSize)/2;
         carteLeftAnchor = (getWidth()- carteWidth*carteTileSize)/2;
 
@@ -185,6 +170,31 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     }
 
+    // chargement du niveau a partir du tableau de reference du niveau
+    private void loadlevel( int a) {
+        // lvl 1
+        if (a==1){
+            // crée la carte
+            for (int i=0; i< carteHeight; i++) {
+                for (int j=0; j< carteWidth; j++) {
+                    Case newCase = new Case(false, ref[j][i], j, i);
+                    carte[j][i]= newCase;
+                }
+            }
+
+
+        }
+        // lvl 2
+        else{
+            for (int i=0; i< carteHeight; i++) {
+                for (int j=0; j< carteWidth; j++) {
+                    Case newCase = new Case(false, ref[j][i], j, i);
+                    carte[j][i]= newCase;
+                }
+            }
+
+        }
+    }
 
     // dessin du gagne si gagne
     private void paintwin(Canvas canvas) {
@@ -195,7 +205,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private void paintcarte(Canvas canvas) {
         for (int i=0; i< carteHeight; i++) {
             for (int j=0; j< carteWidth; j++) {
-                switch (carte[i][j]) {
+                switch (carte[i][j].CSTcolor) {
                     case CST_red:
                         canvas.drawBitmap(red, carteLeftAnchor+ j*carteTileSize, carteTopAnchor+ i*carteTileSize, null);
                         break;
@@ -281,7 +291,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         while (in) {
             try {
                 cv_thread.sleep(40);
-                currentStepZone = (currentStepZone + 1) % maxStepZone;
                 try {
                     c = holder.lockCanvas(null);
                     nDraw(c);
@@ -300,6 +309,58 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     }
 
 
+    private void changeColor(int colorID) {
+        ListIterator<Case> it = caseActive.listIterator();
+        while (it.hasNext()){
+            Case current_case = it.next();
+            current_case.CSTcolor = colorID;
+        }
+    }
+    private void regroup(){
+        Iterator<Case> iter = caseActive.iterator();
+        for (Iterator<Case> it = caseActive.iterator(); it.hasNext(); ) {
+            Case current_case = it.next();
+            if (current_case.x < this.carteWidth) {
+                Case neighboor_down = carte[current_case.x + 1][current_case.y];
+                if (current_case.CSTcolor == neighboor_down.CSTcolor) {
+                    caseActive.add(neighboor_down);
+                    //it.add(neighboor_down);
+                }
+            }
+            if (current_case.x > 0) {
+                Case neighboor_up = carte[current_case.x - 1][current_case.y];
+                if (current_case.CSTcolor == neighboor_up.CSTcolor) {
+                    caseActive.add(neighboor_up);
+                    //it.add(neighboor_up);
+                }}
+            // si il est possible d avoir un voisin a gauche
+            if (current_case.y > 0) {
+                Case neighboor_left = carte[current_case.x][current_case.y - 1];
+                if (current_case.CSTcolor == neighboor_left.CSTcolor) {
+                    caseActive.add(neighboor_left);
+                    //it.add(neighboor_left);
+                }
+            }
+            if (current_case.y < this.carteHeight) {
+                Case neighboor_right = carte[current_case.x][current_case.y + 1];
+                if (current_case.CSTcolor == neighboor_right.CSTcolor) {
+                    caseActive.add(neighboor_right);
+                    //it.add(neighboor_right);
+                }
+            }
+        }
+    }
+    /**
+     * One turn of the game
+     * @param colorID the color chosen
+     */
+    private void oneTurn(int colorID) {
+        changeColor(colorID);
+        regroup();
+
+        Log.i("-> FCT <-", "id couleur: "+ colorID);
+    }
+
     // fonction permettant de recuperer les evenements tactiles
     public boolean onTouchEvent (MotionEvent event) {
         Log.i("-> FCT <-", "onTouchEvent: "+ event.getX());
@@ -309,7 +370,8 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         // on itere sur tous les boutons pour savoir si un a été clické
         for (int i = 0; i < colorButtons.length; i ++) {
             if (colorButtons[i].btn_rect.contains(pos_x, pos_y)) {
-                Log.i("-> FCT <-", "id couleur: "+ colorButtons[i].colorID);
+                int userColor = colorButtons[i].colorID;
+                oneTurn(userColor);
             }
         }
         // si la partie est gagnée

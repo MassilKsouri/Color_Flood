@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, p8_Sokoban!</string>
+    <string name="app_name">ColorFlood</string>
+    <string name="turnText">Turn : </string>
+    <string name="turnCounter">0</string>
+
+</resources>
