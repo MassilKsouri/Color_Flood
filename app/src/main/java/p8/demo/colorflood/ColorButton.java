@@ -9,15 +9,15 @@ import android.graphics.RectF;
  * Found in : https://stackoverflow.com/questions/5779215/androidhow-to-add-a-button-in-surface-view
  */
 
-public class ColorButton {
-    public RectF btn_rect;
-    public Matrix btn_matrix = new Matrix();
+class ColorButton {
+    RectF btn_rect;
+    private Matrix btn_matrix = new Matrix();
 
-    float width;
-    float height;
-    Bitmap bg;
+    private float width;
+    private float height;
+    private Bitmap bg;
     int colorID;
-    public ColorButton(float width, float height, Bitmap bg, int colorID)
+    ColorButton(float width, float height, Bitmap bg, int colorID)
     {
         this.width = width;
         this.height = height;
@@ -26,12 +26,12 @@ public class ColorButton {
 
         btn_rect = new RectF(0, 0, width, height);
     }
-    public void setPosition(float x, float y)
+    void setPosition(float x, float y)
     {
         btn_matrix.setTranslate(x, y);
         btn_matrix.mapRect(btn_rect);
     }
-    public void draw(Canvas canvas)
+    void draw(Canvas canvas)
     {
         canvas.drawBitmap(bg, btn_matrix, null);
     }

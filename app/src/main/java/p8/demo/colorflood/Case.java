@@ -1,17 +1,20 @@
 package p8.demo.colorflood;
 
 /**
- * Created by TheNightKing on 04/12/2017.
+ * Class representing a case in the board
  */
-
-public class Case {
-    Boolean active;
+class Case {
     int CSTcolor ;
     int x;
     int y;
 
-    Case(Boolean active, int CSTcolor, int x, int y) {
-        this.active = active;
+    /**
+     * Case constructor
+     * @param CSTcolor the color of the case
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
+    Case(int CSTcolor, int x, int y) {
         this.CSTcolor = CSTcolor;
         this.x = x;
         this.y = y;
