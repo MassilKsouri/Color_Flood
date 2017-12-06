@@ -49,6 +49,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     Case[][] carte;
     Queue<Case> caseActive;
     List<Case> caseFound;
+    private int nbCaseToFind;
 
     // ancres pour pouvoir centrer la carte du jeu
     int carteTopAnchor;                   // coordonnées en Y du point d'ancrage de notre carte
@@ -190,6 +191,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                     carte[j][i] = newCase;
                 }
             }
+            nbCaseToFind = carteHeight * carteWidth;
         }
         // lvl 2
         else {
@@ -253,6 +255,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     // permet d'identifier si la partie est gagnee (tous les diamants à leur place)
     private boolean isWon() {
+        if (caseFound.size() == nbCaseToFind) return true;
         return false;
     }
 
