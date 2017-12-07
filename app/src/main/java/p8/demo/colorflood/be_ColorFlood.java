@@ -20,7 +20,7 @@ public class be_ColorFlood extends Activity {
         // charge le fichier main.xml comme vue de l'activité
         setContentView(R.layout.main);
         // recuperation de la vue une voie cree à partir de son id
-        mColorFlood = (ColorFlood)findViewById(R.id.SokobanView);
+        mColorFlood = (ColorFlood)findViewById(R.id.ColorFloodView);
         // rend visible la vue
         mColorFlood.setVisibility(View.VISIBLE);
     }
