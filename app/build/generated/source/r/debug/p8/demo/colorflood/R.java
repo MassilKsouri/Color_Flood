@@ -28,18 +28,24 @@ public final class R {
     public static final class drawable {
         public static final int block=0x7f020000;
         public static final int blue=0x7f020001;
-        public static final int blue_button=0x7f020002;
-        public static final int green=0x7f020003;
-        public static final int green_button=0x7f020004;
-        public static final int icon=0x7f020005;
-        public static final int mic_off=0x7f020006;
-        public static final int mic_on=0x7f020007;
-        public static final int red=0x7f020008;
-        public static final int red_button=0x7f020009;
-        public static final int vide=0x7f02000a;
-        public static final int win=0x7f02000b;
-        public static final int yellow=0x7f02000c;
-        public static final int yellow_button=0x7f02000d;
+        public static final int blue_button_lvl1=0x7f020002;
+        public static final int blue_button_lvl2=0x7f020003;
+        public static final int green=0x7f020004;
+        public static final int green_button_lvl1=0x7f020005;
+        public static final int green_button_lvl2=0x7f020006;
+        public static final int icon=0x7f020007;
+        public static final int mic_off=0x7f020008;
+        public static final int mic_on=0x7f020009;
+        public static final int purple=0x7f02000a;
+        public static final int purple_button_lvl2=0x7f02000b;
+        public static final int red=0x7f02000c;
+        public static final int red_button_lvl1=0x7f02000d;
+        public static final int red_button_lvl2=0x7f02000e;
+        public static final int vide=0x7f02000f;
+        public static final int win=0x7f020010;
+        public static final int yellow=0x7f020011;
+        public static final int yellow_button_lvl1=0x7f020012;
+        public static final int yellow_button_lvl2=0x7f020013;
     }
     public static final class id {
         public static final int ColorFloodView=0x7f070000;

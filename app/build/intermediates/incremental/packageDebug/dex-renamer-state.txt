@@ -1,4 +1,4 @@
-#Thu Dec 07 16:22:26 CET 2017
+#Thu Dec 07 17:54:39 CET 2017
 base.0=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_c509d25053c2e0ba8e6e28ad4b6c654e4dad4400
 renamed.1=classes.dex
 renamed.0=classes2.dex

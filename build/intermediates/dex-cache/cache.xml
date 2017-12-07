@@ -19,5 +19,23 @@
         sha1="328a1437a01230362986d2a6eed41f7aa6e8984e">
         <dex dex="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_612086840eef1669a881c682a9dd54cd41d7b6ea\classes.dex" />
     </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="c41df2f485493b87feca015abaa055f087b90276">
+        <dex dex="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_c509d25053c2e0ba8e6e28ad4b6c654e4dad4400\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3f0343fbd681daf27e76cd8f347da7d385f8adcd\classes.dex" />
+    </item>
 
 </items>
