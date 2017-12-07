@@ -20,13 +20,12 @@ public class be_ColorFlood extends Activity {
         final Button buplay = (Button)findViewById(R.id.buplay);
         final Button buinfo = (Button)findViewById(R.id.buinfo);
 
-
         // launch the game
         buplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setContentView(R.layout.main);
-                // recuperation de la vue une voie cree à partir de son id
+                //recuperation de la vue une voie cree à partir de son id
                 mColorFlood = (ColorFlood)findViewById(R.id.ColorFloodView);
                 // rend visible la vue
                 mColorFlood.setVisibility(View.VISIBLE);
@@ -41,7 +40,6 @@ public class be_ColorFlood extends Activity {
                 Context context = getApplicationContext();
                 CharSequence text = "Made By: BOUDJOGHRA & KSOURI";
                 int duration = Toast.LENGTH_LONG;
-
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             }

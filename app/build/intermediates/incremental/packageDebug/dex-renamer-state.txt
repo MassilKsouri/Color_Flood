@@ -1,7 +1,4 @@
-#Thu Dec 07 17:54:39 CET 2017
-base.0=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_c509d25053c2e0ba8e6e28ad4b6c654e4dad4400
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_3f0343fbd681daf27e76cd8f347da7d385f8adcd\\classes.dex
-base.1=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_3f0343fbd681daf27e76cd8f347da7d385f8adcd
-file.0=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_c509d25053c2e0ba8e6e28ad4b6c654e4dad4400\\classes.dex
+#Thu Dec 07 23:53:24 GMT 2017
+base.0=C\:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=C\:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
