@@ -32,10 +32,16 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private Bitmap blue;
     private Bitmap green;
     private Bitmap yellow;
-    private Bitmap redButton;
-    private Bitmap blueButton;
-    private Bitmap greenButton;
-    private Bitmap yellowButton;
+    private Bitmap purple;
+    private Bitmap redButton_lvl1;
+    private Bitmap blueButton_lvl1;
+    private Bitmap greenButton_lvl1;
+    private Bitmap yellowButton_lvl1;
+    private Bitmap redButton_lvl2;
+    private Bitmap blueButton_lvl2;
+    private Bitmap greenButton_lvl2;
+    private Bitmap yellowButton_lvl2;
+    private Bitmap purpleButton_lvl2;
     private int level = 1;
 
     // Declaration des objets Ressources et Context permettant d'accéder aux ressources de notre application et de les charger
@@ -53,27 +59,37 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private int carteLeftAnchor;                  // coordonnées en X du point d'ancrage de notre carte
 
     // width and height of the board
-    private static final int carteWidth = 6;
-    private static final int carteHeight = 6;
+    private static final int carteWidth = 8;
+    private static final int carteHeight = 8;
     // size of each case in the board
     private static final int carteTileSize = 40;
 
     // constant representing the color of each case
-    Map<Integer, Bitmap> cst2Bitmap = new HashMap<>();
-    Map<Integer, Bitmap> cst2ButtonBitmap = new HashMap<>();
+    // map each color code to a bitmap
+    Map<Integer, Bitmap> cst2Bitmap_lvl1 = new HashMap<>();
+    Map<Integer, Bitmap> cst2ButtonBitmap_lvl1 = new HashMap<>();
+    Map<Integer, Bitmap> cst2Bitmap_lvl2 = new HashMap<>();
+    Map<Integer, Bitmap> cst2ButtonBitmap_lvl2 = new HashMap<>();
+
+    // color codes
     private static final int CST_red = 0;
     private static final int CST_vide = 1;
     private static final int CST_green = 2;
     private static final int CST_yellow = 3;
     private static final int CST_blue = 4;
+    private static final int CST_purple = 5;
 
-    private int[] colors = {CST_red, CST_blue, CST_green, CST_yellow};
-    private int nbOfColors = colors.length;
+    private int[] colors_lvl1 = {CST_red, CST_blue, CST_green, CST_yellow};
+    private int nbOfColors_lvl1 = colors_lvl1.length;
+    private int[] colors_lvl2 = {CST_red, CST_blue, CST_green, CST_yellow, CST_purple};
+    private int nbOfColors_lvl2 = colors_lvl2.length;
 
     // the clickable buttons
-    private ColorButton colorButtons[] = new ColorButton[nbOfColors];
+    private ColorButton colorButtons_lvl1[] = new ColorButton[nbOfColors_lvl1];
+    private ColorButton colorButtons_lvl2[] = new ColorButton[nbOfColors_lvl2];
     // array containing the color for each case in the board
-    private int[][] ref = createLevel(colors);
+    private int[][] ref_lvl1 = createLevel(colors_lvl1);
+    private int[][] ref_lvl2 = createLevel(colors_lvl2);
     // thread
     private boolean in = true;
     private Thread cv_thread;
@@ -99,21 +115,43 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         green = BitmapFactory.decodeResource(mRes, R.drawable.green);
         yellow = BitmapFactory.decodeResource(mRes, R.drawable.yellow);
         blue = BitmapFactory.decodeResource(mRes, R.drawable.blue);
-        redButton = BitmapFactory.decodeResource(mRes, R.drawable.red_button);
-        greenButton = BitmapFactory.decodeResource(mRes, R.drawable.green_button);
-        yellowButton = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button);
-        blueButton = BitmapFactory.decodeResource(mRes, R.drawable.blue_button);
+        purple = BitmapFactory.decodeResource(mRes, R.drawable.purple);
+        redButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.red_button_lvl1);
+        greenButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.green_button_lvl1);
+        yellowButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button_lvl1);
+        blueButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.blue_button_lvl1);
+        redButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.red_button_lvl2);
+        greenButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.green_button_lvl2);
+        yellowButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button_lvl2);
+        blueButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.blue_button_lvl2);
+        purpleButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.purple_button_lvl2);
         vide = BitmapFactory.decodeResource(mRes, R.drawable.vide);
         win = BitmapFactory.decodeResource(mRes, R.drawable.win);
 
-        cst2Bitmap.put(CST_red, red);
-        cst2Bitmap.put(CST_green, green);
-        cst2Bitmap.put(CST_yellow, yellow);
-        cst2Bitmap.put(CST_blue, blue);
-        cst2ButtonBitmap.put(CST_red, redButton);
-        cst2ButtonBitmap.put(CST_green, greenButton);
-        cst2ButtonBitmap.put(CST_yellow, yellowButton);
-        cst2ButtonBitmap.put(CST_blue, blueButton);
+        // colors for the 1st level
+        cst2Bitmap_lvl1.put(CST_red, red);
+        cst2Bitmap_lvl1.put(CST_green, green);
+        cst2Bitmap_lvl1.put(CST_yellow, yellow);
+        cst2Bitmap_lvl1.put(CST_blue, blue);
+
+        cst2ButtonBitmap_lvl1.put(CST_red, redButton_lvl1);
+        cst2ButtonBitmap_lvl1.put(CST_green, greenButton_lvl1);
+        cst2ButtonBitmap_lvl1.put(CST_yellow, yellowButton_lvl1);
+        cst2ButtonBitmap_lvl1.put(CST_blue, blueButton_lvl1);
+
+        // colors for the 2nd level
+        cst2Bitmap_lvl2.put(CST_red, red);
+        cst2Bitmap_lvl2.put(CST_green, green);
+        cst2Bitmap_lvl2.put(CST_yellow, yellow);
+        cst2Bitmap_lvl2.put(CST_blue, blue);
+        cst2Bitmap_lvl2.put(CST_purple, purple);
+
+        cst2ButtonBitmap_lvl2.put(CST_red, redButton_lvl2);
+        cst2ButtonBitmap_lvl2.put(CST_green, greenButton_lvl2);
+        cst2ButtonBitmap_lvl2.put(CST_yellow, yellowButton_lvl2);
+        cst2ButtonBitmap_lvl2.put(CST_blue, blueButton_lvl2);
+        cst2ButtonBitmap_lvl2.put(CST_purple, purpleButton_lvl2);
+
         // init game parameters
         initparameters(level);
         // create the thread
@@ -123,9 +161,9 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     }
 
     /**
-     * Generates a grid filled with random colors
+     * Generates a grid filled with random colors_lvl1
      *
-     * @param colors the colors to chose from to fill the grid
+     * @param colors the colors_lvl1 to chose from to fill the grid
      * @return a colored grid
      */
     private int[][] createLevel(int[] colors) {
@@ -188,17 +226,17 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             // create the board
             for (int i = 0; i < carteHeight; i++) {
                 for (int j = 0; j < carteWidth; j++) {
-                    Case newCase = new Case(ref[j][i], j, i);
+                    Case newCase = new Case(ref_lvl1[j][i], j, i);
                     carte[j][i] = newCase;
                 }
             }
             nbCaseToFind = carteHeight * carteWidth;
         }
         // lvl 2
-        else {
+        else if (a == 2){
             for (int i = 0; i < carteHeight; i++) {
                 for (int j = 0; j < carteWidth; j++) {
-                    Case newCase = new Case(ref[j][i], j, i);
+                    Case newCase = new Case(ref_lvl2[j][i], j, i);
                     carte[j][i] = newCase;
                 }
             }
@@ -212,24 +250,46 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     // draw the board
     private void paintcarte(Canvas canvas) {
-        for (int i = 0; i < carteHeight; i++) {
-            for (int j = 0; j < carteWidth; j++) {
-                Bitmap currentBitmap = cst2Bitmap.get(carte[i][j].CSTcolor);
-                canvas.drawBitmap(currentBitmap, carteLeftAnchor + j * carteTileSize, carteTopAnchor + i * carteTileSize, null);
+        if (level == 1) {
+            for (int i = 0; i < carteHeight; i++) {
+                for (int j = 0; j < carteWidth; j++) {
+                    Bitmap currentBitmap = cst2Bitmap_lvl1.get(carte[i][j].CSTcolor);
+                    canvas.drawBitmap(currentBitmap, carteLeftAnchor + j * carteTileSize, carteTopAnchor + i * carteTileSize, null);
+                }
+            }
+            // creates the clickable buttons
+            for (int i = 0; i < colors_lvl1.length; i ++) {
+                ColorButton colorButton = new ColorButton(80, 80, cst2ButtonBitmap_lvl1.get(colors_lvl1[i]), colors_lvl1[i]);
+                colorButton.setPosition(80 * i, getHeight() - carteTileSize * 1);
+                colorButton.draw(canvas);
+                this.colorButtons_lvl1[i] = colorButton;
             }
         }
-        // creates the clickable buttons
-        for (int i = 0; i < colors.length; i ++) {
-            ColorButton colorButton = new ColorButton(80, 80, cst2ButtonBitmap.get(colors[i]), colors[i]);
-            colorButton.setPosition(carteTileSize * 2 * i, getHeight() - carteTileSize * 2);
-            colorButton.draw(canvas);
-            this.colorButtons[i] = colorButton;
+        if (level == 2) {
+            for (int i = 0; i < carteHeight; i++) {
+                for (int j = 0; j < carteWidth; j++) {
+                    Bitmap currentBitmap = cst2Bitmap_lvl2.get(carte[i][j].CSTcolor);
+                    canvas.drawBitmap(currentBitmap, carteLeftAnchor + j * carteTileSize, carteTopAnchor + i * carteTileSize, null);
+                }
+            }
+            // creates the clickable buttons
+            for (int i = 0; i < colors_lvl2.length; i ++) {
+                ColorButton colorButton = new ColorButton(60, 60, cst2ButtonBitmap_lvl2.get(colors_lvl2[i]), colors_lvl2[i]);
+                colorButton.setPosition(carteLeftAnchor + 60 * i, getHeight() - carteTileSize);
+                colorButton.draw(canvas);
+                this.colorButtons_lvl2[i] = colorButton;
+            }
         }
+
+
     }
 
     // game is won if every case is found (ie of the same color as the others)
     private boolean isWon() {
-        return (caseFound.size() == nbCaseToFind);
+        if (caseFound.size() == nbCaseToFind){
+            return true;
+        }
+        else return false ;
     }
 
     // draw the board
@@ -239,7 +299,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             paintcarte(canvas);
             paintwin(canvas);
             // si gagnant, on incr la valeur du niveau de 1
-            level = level + 1;
 
         } else {
             paintcarte(canvas);
@@ -351,18 +410,30 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         float pos_y = event.getY();
 
         // itere through every button to detect a touch event
-        for (int i = 0; i < colorButtons.length; i++) {
-            if (colorButtons[i].btn_rect.contains(pos_x, pos_y)) {
-                int userColor = colorButtons[i].colorID;
-                oneTurn(userColor);
+        if (level == 1) {
+            for (int i = 0; i < colorButtons_lvl1.length; i++) {
+                if (colorButtons_lvl1[i].btn_rect.contains(pos_x, pos_y)) {
+                    int userColor = colorButtons_lvl1[i].colorID;
+                    oneTurn(userColor);
+                }
             }
         }
+        if (level == 2) {
+            for (int i = 0; i < colorButtons_lvl2.length; i++) {
+                if (colorButtons_lvl2[i].btn_rect.contains(pos_x, pos_y)) {
+                    int userColor = colorButtons_lvl2[i].colorID;
+                    oneTurn(userColor);
+                }
+            }
+        }
+
         // check if the game is won
         if (isWon()) {
             int x = (getWidth() / 2) - (win.getWidth() / 2);
             int y = (getHeight() / 2) - (win.getHeight() / 2);
             // vérif que l'utilisateur appuie sur le bouton gagné pour lancer le niveau suivant
             if (event.getX() > x && event.getX() < x + win.getWidth() && event.getY() > y && event.getY() < y + win.getHeight()) {
+                level += 1;
                 initparameters(level);
             }
         }
