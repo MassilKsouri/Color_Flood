@@ -1,7 +1,4 @@
-#Mon Dec 04 14:46:01 CET 2017
-base.0=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\P8_Sokoban\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_bac723a90a63eb3f4b0d1428d18e914a18631e24
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\P8_Sokoban\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_612086840eef1669a881c682a9dd54cd41d7b6ea\\classes.dex
-base.1=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\P8_Sokoban\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_612086840eef1669a881c682a9dd54cd41d7b6ea
-file.0=C\:\\Users\\TheNightKing\\Downloads\\Compressed\\P8_Sokoban\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_bac723a90a63eb3f4b0d1428d18e914a18631e24\\classes.dex
+#Wed Dec 06 23:20:50 GMT 2017
+base.0=C\:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=C\:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

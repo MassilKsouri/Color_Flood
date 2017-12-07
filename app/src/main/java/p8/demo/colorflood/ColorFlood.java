@@ -223,9 +223,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             colorButton.draw(canvas);
             this.colorButtons[i] = colorButton;
         }
-
     }
-
 
     // game is won if every case is found (ie of the same color as the others)
     private boolean isWon() {
@@ -258,7 +256,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Log.i("-> FCT <-", "surfaceCreated");
     }
 
-
     public void surfaceDestroyed(SurfaceHolder arg0) {
         Log.i("-> FCT <-", "surfaceDestroyed");
     }
@@ -283,13 +280,14 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 }
             } catch (Exception e) {
                 Log.e("-> RUN <-", "PB DANS RUN");
-
-
             }
         }
     }
 
-
+    /**
+     * Change the color of every found case
+     * @param colorID the color to change the cases to
+     */
     private void changeColor(int colorID) {
         for (Case current_case : caseFound) {
             current_case.CSTcolor = colorID;
@@ -297,6 +295,10 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         }
     }
 
+    /**
+     * Regroup all the cases of the same color and near the actives cases
+     * and add them to the caseFound group
+     */
     private void regroup() {
         while (this.caseActive.peek() != null) {
             Case current_case = caseActive.remove();
@@ -333,13 +335,11 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     /**
      * One turn of the game
      *
-     * @param colorID the color chosen
+     * @param colorID the color chosen by the user
      */
     private void oneTurn(int colorID) {
         changeColor(colorID);
         regroup();
-
-        Log.i("-> FCT <-", "id couleur: " + colorID);
     }
 
     // fonction permettant de recuperer les evenements tactiles
@@ -348,14 +348,14 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         float pos_x = event.getX();
         float pos_y = event.getY();
 
-        // on itere sur tous les boutons pour savoir si un a été clické
+        // itere through every button to detect a touch event
         for (int i = 0; i < colorButtons.length; i++) {
             if (colorButtons[i].btn_rect.contains(pos_x, pos_y)) {
                 int userColor = colorButtons[i].colorID;
                 oneTurn(userColor);
             }
         }
-        // si la partie est gagnée
+        // check if the game is won
         if (isWon()) {
             int x = (getWidth() / 2) - (win.getWidth() / 2);
             int y = (getHeight() / 2) - (win.getHeight() / 2);
