@@ -6,75 +6,86 @@
     density="xxhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1512405753112"
-    token="-8046741409671825189"
+    timestamp="1512660522624"
+    token="8416303197100568715"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="178" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="66" />
     <task
         name="verifier"
-        duration="0" />
+        duration="12" />
+
+    <artifact
+        location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\outputs\apk\app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1512395155097"
+        timestamp="1512658507334"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\outputs\apk\app-debug.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1512405165989"
+        timestamp="1512660487370"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\TheNightKing\Downloads\Compressed\P8_Sokoban\app\build\outputs\apk\app-debug.apk"
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1512405753112"
-        verifier="COLD_SWAP_REQUESTED" />
+        timestamp="1512660522624"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\TheNightKing\Downloads\Compressed\Test\Color_Flood\app\build\outputs\apk\app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
 
 </instant-run>

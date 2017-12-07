@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="Blue">#1588ed</color>
+    <color name="Green">#788b65</color>
+    <color name="Orange">#fc980a</color>
+    <color name="Pink">#f81edf</color>
+    <color name="Red">#f81b0b</color>
+    <color name="Yellow">#fcf40d</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <string name="app_name">ColorFlood</string>
     <string name="hello">Hello World, p8_Sokoban!</string>
     <string name="turnCounter">0</string>

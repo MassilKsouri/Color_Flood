@@ -21,7 +21,9 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-
+/**
+ * CLass representing the Color Flood game
+ */
 public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, Runnable {
     // Declaration des images
     private Bitmap vide;
