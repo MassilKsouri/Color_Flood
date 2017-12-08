@@ -3,24 +3,23 @@ package p8.demo.colorflood;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 // declaration de notre activity héritée de Activity
 public class be_ColorFlood extends Activity {
     private ColorFlood mColorFlood;
 
+    /**
+     * The menu
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +27,7 @@ public class be_ColorFlood extends Activity {
 
         final Button buplay = (Button) findViewById(R.id.buplay);
         final Button buinfo = (Button) findViewById(R.id.buinfo);
+
 
         // launch the game
         buplay.setOnClickListener(new View.OnClickListener() {
@@ -38,8 +38,6 @@ public class be_ColorFlood extends Activity {
                 mColorFlood = (ColorFlood) findViewById(R.id.ColorFloodView);
                 // rend visible la vue
                 mColorFlood.setVisibility(View.VISIBLE);
-
-
             }
         });
 
@@ -54,5 +52,15 @@ public class be_ColorFlood extends Activity {
                 toast.show();
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }
