@@ -3,22 +3,31 @@ package p8.demo.colorflood;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 // declaration de notre activity héritée de Activity
 public class be_ColorFlood extends Activity {
     private ColorFlood mColorFlood;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
-        final Button buplay = (Button)findViewById(R.id.buplay);
-        final Button buinfo = (Button)findViewById(R.id.buinfo);
+        final Button buplay = (Button) findViewById(R.id.buplay);
+        final Button buinfo = (Button) findViewById(R.id.buinfo);
 
         // launch the game
         buplay.setOnClickListener(new View.OnClickListener() {
@@ -26,9 +35,10 @@ public class be_ColorFlood extends Activity {
             public void onClick(View view) {
                 setContentView(R.layout.main);
                 //recuperation de la vue une voie cree à partir de son id
-                mColorFlood = (ColorFlood)findViewById(R.id.ColorFloodView);
+                mColorFlood = (ColorFlood) findViewById(R.id.ColorFloodView);
                 // rend visible la vue
                 mColorFlood.setVisibility(View.VISIBLE);
+
 
             }
         });

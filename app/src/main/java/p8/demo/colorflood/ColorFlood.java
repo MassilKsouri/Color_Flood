@@ -13,7 +13,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,9 +27,10 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * CLass representing the Color Flood game
  */
-public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, Runnable, Serializable {
     private Bitmap win;
     private Bitmap lost;
+    private static final long serialVersionUID = 1350092881346723535L;
 
 
     // the current level
@@ -56,6 +59,9 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     Map<Integer, Bitmap> cst2Bitmap = new HashMap<>();
     Map<Integer, Bitmap> cst2ButtonBitmap_lvl1 = new HashMap<>();
     Map<Integer, Bitmap> cst2ButtonBitmap_lvl2 = new HashMap<>();
+    private MenuButton menuButton;
+    private Bitmap menuBmp;
+    private Bitmap winGame;
 
 
     // color codes
@@ -81,6 +87,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     Paint paint;
     int maxTurns = 20;
     int score = 1000;
+    int maxLevel = 2;
     long timeBegin = System.currentTimeMillis();
 
     /**
@@ -112,7 +119,10 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Bitmap yellowButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button_lvl2);
         Bitmap blueButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.blue_button_lvl2);
         Bitmap purpleButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.purple_button_lvl2);
+
+        menuBmp = BitmapFactory.decodeResource(mRes, R.drawable.menubutton);
         win = BitmapFactory.decodeResource(mRes, R.drawable.win);
+        winGame = BitmapFactory.decodeResource(mRes, R.drawable.youwin);
         lost = BitmapFactory.decodeResource(mRes, R.drawable.lost);
 
 
@@ -223,7 +233,12 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     // draw win if won
     private void paintwin(Canvas canvas) {
-        canvas.drawBitmap(win, carteLeftAnchor + 3 * carteTileSize, carteTopAnchor + 4 * carteTileSize, null);
+        if (true) {
+            canvas.drawBitmap(winGame, carteLeftAnchor + carteTileSize, carteTopAnchor + 2 * carteTileSize, null);
+        }
+        else {
+            canvas.drawBitmap(win, carteLeftAnchor + 3 * carteTileSize, carteTopAnchor + 4 * carteTileSize, null);
+        }
     }
     private void paintlost(Canvas canvas) {
         canvas.drawBitmap(lost, carteLeftAnchor + 3 * carteTileSize, carteTopAnchor + 4 * carteTileSize, null);
@@ -231,6 +246,10 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     // draw the board
     private void paintcarte(Canvas canvas) {
+        menuButton = new MenuButton(50,50, menuBmp);
+        //todo find more generic coordinates than 250, 10
+        menuButton.setPosition(250,10);
+        menuButton.draw(canvas);
         if (level == 1) {
             for (int i = 0; i < carteHeight; i++) {
                 for (int j = 0; j < carteWidth; j++) {
@@ -269,9 +288,9 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private boolean isWon() {
         return (caseFound.size() == nbCaseToFind);
     }
-    // game is lost if the number of turns exceeds maxturns
+    // game is lost if the number of turns exceeds maxturns or if the time is exceeded
     private  boolean isLost() {
-        return (turns > maxTurns);
+        return (turns > maxTurns | score == 0);
     }
 
     // draw the board and the turns
@@ -307,7 +326,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     }
 
     // callback sur le cycle de vie de la surfaceview
-    // TODO gérer le cas ou l'utilisateur pause l appli puis la relance car dans notre cas il n'y a aucune sauvegarde de la situation avant la pause
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.i("-> FCT <-", "surfaceChanged " + width + " - " + height);
         initparameters(level);
@@ -412,6 +430,9 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Log.i("-> FCT <-", "onTouchEvent: " + event.getX());
         float pos_x = event.getX();
         float pos_y = event.getY();
+        if (menuButton.btn_rect.contains(pos_x, pos_y)){
+            setVisibility(View.INVISIBLE);
+        }
 
         // check if the game is won
         if (isWon()) {
@@ -437,6 +458,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 maxTurns = 20;
                 turns = 0;
                 score = 1000;
+                timeBegin = System.currentTimeMillis();
                 initparameters(level);
             }
         }
