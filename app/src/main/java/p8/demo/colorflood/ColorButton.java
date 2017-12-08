@@ -17,6 +17,8 @@ class ColorButton {
     private float height;
     private Bitmap bg;
     int colorID;
+    int level;
+
     ColorButton(float width, float height, Bitmap bg, int colorID)
     {
         this.width = width;

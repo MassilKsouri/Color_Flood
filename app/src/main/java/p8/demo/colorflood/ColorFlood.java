@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,6 +80,8 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     SurfaceHolder holder;
     Paint paint;
     int maxTurns = 20;
+    int score = 1000;
+    long timeBegin = System.currentTimeMillis();
 
     /**
      * The constructor called from the main JetBoy activity
@@ -280,14 +281,23 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 + Integer.toString(maxTurns);
         String levelToDisplay = "LEVEL : "
                 + Integer.toString(level);
+        String scoreToDisplay = "SCORE : "
+                + Integer.toString(score);
+        long timeNow = System.currentTimeMillis() - timeBegin;
+        String timeToDisplay = "Time : "
+                + Long.toString(timeNow / 1000) + "\"";
         canvas.drawRGB(44, 44, 44);
         canvas.drawText(levelToDisplay, 20, 20, paint);
         canvas.drawText(turnsToDisplay, 20, 40, paint);
+        canvas.drawText(scoreToDisplay, 160, 20, paint);
+        canvas.drawText(timeToDisplay, 160, 40, paint);
+
+
         if (isWon()) {
-            paintcarte(canvas);
+            //paintcarte(canvas);
             paintwin(canvas);
         } else if(isLost()) {
-            paintcarte(canvas);
+            //paintcarte(canvas);
             paintlost(canvas);
         }
         else {
@@ -322,6 +332,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         while (in) {
             try {
                 cv_thread.sleep(40);
+                if (!isWon() & !isLost()) score -= 1;
                 try {
                     c = holder.lockCanvas(null);
                     nDraw(c);
@@ -395,14 +406,42 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         turns += 1;
     }
 
+
     // fonction permettant de recuperer les evenements tactiles
     public boolean onTouchEvent(MotionEvent event) {
         Log.i("-> FCT <-", "onTouchEvent: " + event.getX());
         float pos_x = event.getX();
         float pos_y = event.getY();
 
+        // check if the game is won
+        if (isWon()) {
+            int x = (getWidth() / 2) - (win.getWidth() / 2);
+            int y = (getHeight() / 2) - (win.getHeight() / 2);
+            // check that the user touch the button and launch the next level
+            if (event.getX() > x && event.getX() < x + win.getWidth() && event.getY() > y && event.getY() < y + win.getHeight()) {
+                level += 1;
+                score += level * 1000;
+                int turnsLeft = maxTurns - turns;
+                maxTurns += turnsLeft;
+                turns = 0;
+                initparameters(level);
+            }
+        }
+        // check if the game is lost
+        else if (isLost()) {
+            int x = (getWidth() / 2) - (lost.getWidth() / 2);
+            int y = (getHeight() / 2) - (lost.getHeight() / 2);
+            // check that the user touch the button and launch the first level
+            if (event.getX() > x && event.getX() < x + lost.getWidth() && event.getY() > y && event.getY() < y + lost.getHeight()) {
+                level = 1;
+                maxTurns = 20;
+                turns = 0;
+                score = 1000;
+                initparameters(level);
+            }
+        }
         // itere through every button to detect a touch event
-        if (level == 1) {
+        else if (level == 1) {
             for (ColorButton aColorButtons_lvl1 : colorButtons_lvl1) {
                 if (aColorButtons_lvl1.btn_rect.contains(pos_x, pos_y)) {
                     int userColor = aColorButtons_lvl1.colorID;
@@ -410,7 +449,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 }
             }
         }
-        if (level == 2) {
+        else if (level == 2) {
             for (ColorButton aColorButtons_lvl2 : colorButtons_lvl2) {
                 if (aColorButtons_lvl2.btn_rect.contains(pos_x, pos_y)) {
                     int userColor = aColorButtons_lvl2.colorID;
@@ -419,31 +458,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             }
         }
 
-        // check if the game is won
-        if (isWon()) {
-            int x = (getWidth() / 2) - (win.getWidth() / 2);
-            int y = (getHeight() / 2) - (win.getHeight() / 2);
-            // vérif que l'utilisateur appuie sur le bouton gagné pour lancer le niveau suivant
-            if (event.getX() > x && event.getX() < x + win.getWidth() && event.getY() > y && event.getY() < y + win.getHeight()) {
-                level += 1;
-                int turnsLeft = maxTurns - turns;
-                maxTurns += turnsLeft;
-                turns = 0;
-                initparameters(level);
-            }
-        }
-        // check if the game is lost
-        if (isLost()) {
-            int x = (getWidth() / 2) - (lost.getWidth() / 2);
-            int y = (getHeight() / 2) - (lost.getHeight() / 2);
-            // vérif que l'utilisateur appuie sur le bouton gagné pour lancer le niveau suivant
-            if (event.getX() > x && event.getX() < x + lost.getWidth() && event.getY() > y && event.getY() < y + lost.getHeight()) {
-                level = 1;
-                maxTurns = 20;
-                turns = 0;
-                initparameters(level);
-            }
-        }
         return super.onTouchEvent(event);
     }
 }

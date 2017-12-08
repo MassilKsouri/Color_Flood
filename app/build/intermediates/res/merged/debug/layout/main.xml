@@ -8,18 +8,5 @@
 		android:id="@+id/ColorFloodView"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent" />
-	<TextView
-		android:layout_width="50dp"
-		android:id="@+id/turn"
-		android:layout_marginLeft="10dp"
-		android:text="@string/turnText"
-		android:layout_height="20dp" />
-	<TextView
-		android:layout_width="50dp"
-		android:id="@+id/turnCounter"
-		android:layout_marginLeft="60dp"
-		android:text="@string/turnCounter"
-		android:layout_height="20dp" />
-
 
 </FrameLayout>
