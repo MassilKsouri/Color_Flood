@@ -35,18 +35,20 @@ public final class R {
         public static final int green_button_lvl2=0x7f020006;
         public static final int icon=0x7f020007;
         public static final int lost=0x7f020008;
-        public static final int mic_off=0x7f020009;
-        public static final int mic_on=0x7f02000a;
-        public static final int purple=0x7f02000b;
-        public static final int purple_button_lvl2=0x7f02000c;
-        public static final int red=0x7f02000d;
-        public static final int red_button_lvl1=0x7f02000e;
-        public static final int red_button_lvl2=0x7f02000f;
-        public static final int vide=0x7f020010;
-        public static final int win=0x7f020011;
-        public static final int yellow=0x7f020012;
-        public static final int yellow_button_lvl1=0x7f020013;
-        public static final int yellow_button_lvl2=0x7f020014;
+        public static final int menubutton=0x7f020009;
+        public static final int mic_off=0x7f02000a;
+        public static final int mic_on=0x7f02000b;
+        public static final int purple=0x7f02000c;
+        public static final int purple_button_lvl2=0x7f02000d;
+        public static final int red=0x7f02000e;
+        public static final int red_button_lvl1=0x7f02000f;
+        public static final int red_button_lvl2=0x7f020010;
+        public static final int vide=0x7f020011;
+        public static final int win=0x7f020012;
+        public static final int yellow=0x7f020013;
+        public static final int yellow_button_lvl1=0x7f020014;
+        public static final int yellow_button_lvl2=0x7f020015;
+        public static final int youwin=0x7f020016;
     }
     public static final class id {
         public static final int ColorFloodView=0x7f070000;
