@@ -14,8 +14,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +25,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * CLass representing the Color Flood game
  */
-public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, Runnable, Serializable {
+public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, Runnable {
     private Bitmap win;
     private Bitmap lost;
     private static final long serialVersionUID = 1350092881346723535L;
@@ -37,6 +35,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private int level = 1;
     // the current turn
     private int turns = 0;
+    private int difficulty = 0;
 
     // array representing the board
     private Case[][] carte;
@@ -49,8 +48,8 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private int carteLeftAnchor;                  // coordonnées en X du point d'ancrage de notre carte
 
     // width and height of the board
-    private static final int carteWidth = 16;
-    private static final int carteHeight = 16;
+    private final int carteWidth = 10 + difficulty * 3;
+    private final int carteHeight = 10 + difficulty * 3;
     // size of each case in the board
     private static final int carteTileSize = 20;
 
@@ -97,7 +96,8 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     Paint paint;
     int maxTurns = 26;
     int score = 1000;
-    int maxLevel = 2;
+    int maxLevel = 3;
+    Boolean gameOver = false;
     long timeBegin = System.currentTimeMillis();
 
     /**
@@ -111,7 +111,6 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         // permet d'ecouter les surfaceChanged, surfaceCreated, surfaceDestroyed
         holder = getHolder();
         holder.addCallback(this);
-
 
         // load images
         Resources mRes = context.getResources();
@@ -267,13 +266,18 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             }
         }}
 
-    // draw win if won
+    /**
+     * Function that draws the in button
+     * @param canvas
+     */
     private void paintwin(Canvas canvas ) {
-        if (true) {
-            canvas.drawBitmap(winGame, carteLeftAnchor + carteTileSize, carteTopAnchor + 2 * carteTileSize, null);
+        if (level == maxLevel) {
+            canvas.drawBitmap(winGame, carteTileSize * 6,
+                    carteTopAnchor + (carteTileSize * carteHeight / 2), null);
         }
         else {
-            canvas.drawBitmap(win, carteLeftAnchor + 3 * carteTileSize, carteTopAnchor + 4 * carteTileSize, null);
+            canvas.drawBitmap(win, carteTileSize * 6,
+                    carteTopAnchor + (carteTileSize * carteHeight / 2), null);
         }
     }
     private void paintlost(Canvas canvas) {
@@ -311,7 +315,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             // creates the clickable buttons
             for (int i = 0; i < colors_lvl2.length; i++) {
                 ColorButton colorButton = new ColorButton(60, 60, cst2ButtonBitmap_lvl2.get(colors_lvl2[i]), colors_lvl2[i]);
-                colorButton.setPosition(carteLeftAnchor + 60 * i, getHeight() - carteTileSize);
+                colorButton.setPosition(60 * i, getHeight() - carteTileSize*2);
                 colorButton.draw(canvas);
                 this.colorButtons_lvl2[i] = colorButton;
             }
@@ -325,7 +329,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             }
             for (int i = 0; i < colors_lvl3.length; i++) {
                 ColorButton colorButton = new ColorButton(50, 50, cst2ButtonBitmap_lvl3.get(colors_lvl3[i]), colors_lvl3[i]);
-                colorButton.setPosition(carteLeftAnchor + 50 * i, getHeight() - carteTileSize);
+                colorButton.setPosition(50 * i, getHeight() - carteTileSize*2);
                 colorButton.draw(canvas);
                 this.colorButtons_lvl3[i] = colorButton;
             }
@@ -334,7 +338,10 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         }
     }
 
-    // game is won if every case is found (ie of the same color as the others)
+    /**
+     * Function that chekcs if the game is won
+     * @return
+     */
     private boolean isWon() {
         return (caseFound.size() == nbCaseToFind);
     }
@@ -385,6 +392,10 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Log.i("-> FCT <-", "surfaceCreated");
     }
 
+    /**
+     * function called when the surfaceView is finished
+     * @param arg0
+     */
     public void surfaceDestroyed(SurfaceHolder arg0) {
         Log.i("-> FCT <-", "surfaceDestroyed");
     }
@@ -480,8 +491,8 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Log.i("-> FCT <-", "onTouchEvent: " + event.getX());
         float pos_x = event.getX();
         float pos_y = event.getY();
+        // todo
         if (menuButton.btn_rect.contains(pos_x, pos_y)){
-            setVisibility(View.INVISIBLE);
         }
 
         // check if the game is won
@@ -490,12 +501,19 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             int y = (getHeight() / 2) - (win.getHeight() / 2);
             // check that the user touch the button and launch the next level
             if (event.getX() > x && event.getX() < x + win.getWidth() && event.getY() > y && event.getY() < y + win.getHeight()) {
-                level += 1;
-                score += level * 1000;
-                int turnsLeft = maxTurns - turns;
-                maxTurns += turnsLeft;
-                turns = 0;
-                initparameters(level);
+                if (level == maxLevel) {
+                    setVisibility(INVISIBLE);
+                    gameOver = true;
+                }
+                // if the game is not over yet
+                else {
+                    level += 1;
+                    score += level * 1000;
+                    int turnsLeft = maxTurns - turns;
+                    maxTurns += turnsLeft;
+                    turns = 0;
+                    initparameters(level);
+                }
             }
         }
         // check if the game is lost
@@ -505,11 +523,13 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             // check that the user touch the button and launch the first level
             if (event.getX() > x && event.getX() < x + lost.getWidth() && event.getY() > y && event.getY() < y + lost.getHeight()) {
                 level = 1;
-                maxTurns = 20;
+                maxTurns = 26;
                 turns = 0;
                 score = 1000;
                 timeBegin = System.currentTimeMillis();
-                initparameters(level);
+                gameOver = true;
+                setVisibility(INVISIBLE);
+                //initparameters(level);
             }
         }
         // itere through every button to detect a touch event
