@@ -49,16 +49,18 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private int carteLeftAnchor;                  // coordonnées en X du point d'ancrage de notre carte
 
     // width and height of the board
-    private static final int carteWidth = 8;
-    private static final int carteHeight = 8;
+    private static final int carteWidth = 16;
+    private static final int carteHeight = 16;
     // size of each case in the board
-    private static final int carteTileSize = 40;
+    private static final int carteTileSize = 20;
 
     // constant representing the color of each case
     // map each color code to a bitmap
     Map<Integer, Bitmap> cst2Bitmap = new HashMap<>();
     Map<Integer, Bitmap> cst2ButtonBitmap_lvl1 = new HashMap<>();
     Map<Integer, Bitmap> cst2ButtonBitmap_lvl2 = new HashMap<>();
+    Map<Integer, Bitmap> cst2ButtonBitmap_lvl3 = new HashMap<>();
+
     private MenuButton menuButton;
     private Bitmap menuBmp;
     private Bitmap winGame;
@@ -70,22 +72,30 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
     private static final int CST_yellow = 3;
     private static final int CST_blue = 4;
     private static final int CST_purple = 5;
+    private static final int CST_brown = 6;
+
 
     private int[] colors_lvl1 = {CST_red, CST_blue, CST_green, CST_yellow};
     private int nbOfColors_lvl1 = colors_lvl1.length;
     private int[] colors_lvl2 = {CST_red, CST_blue, CST_green, CST_yellow, CST_purple};
     private int nbOfColors_lvl2 = colors_lvl2.length;
+    private int[] colors_lvl3 = {CST_red, CST_blue, CST_green, CST_yellow, CST_purple, CST_brown};
+    private int nbOfColors_lvl3 = colors_lvl3.length;
 
     // the clickable buttons
     private ColorButton colorButtons_lvl1[] = new ColorButton[nbOfColors_lvl1];
     private ColorButton colorButtons_lvl2[] = new ColorButton[nbOfColors_lvl2];
+    private ColorButton colorButtons_lvl3[] = new ColorButton[nbOfColors_lvl3];
+
     // array containing the color for each case in the board
     private int[][] ref_lvl1 = createLevel(colors_lvl1);
     private int[][] ref_lvl2 = createLevel(colors_lvl2);
+    private int[][] ref_lvl3 = createLevel(colors_lvl3);
+
     private Thread cv_thread;
     SurfaceHolder holder;
     Paint paint;
-    int maxTurns = 20;
+    int maxTurns = 26;
     int score = 1000;
     int maxLevel = 2;
     long timeBegin = System.currentTimeMillis();
@@ -110,6 +120,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Bitmap yellow = BitmapFactory.decodeResource(mRes, R.drawable.yellow);
         Bitmap blue = BitmapFactory.decodeResource(mRes, R.drawable.blue);
         Bitmap purple = BitmapFactory.decodeResource(mRes, R.drawable.purple);
+        Bitmap brown = BitmapFactory.decodeResource(mRes, R.drawable.brown);
         Bitmap redButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.red_button_lvl1);
         Bitmap greenButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.green_button_lvl1);
         Bitmap yellowButton_lvl1 = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button_lvl1);
@@ -119,6 +130,13 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         Bitmap yellowButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button_lvl2);
         Bitmap blueButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.blue_button_lvl2);
         Bitmap purpleButton_lvl2 = BitmapFactory.decodeResource(mRes, R.drawable.purple_button_lvl2);
+        Bitmap redButton_lvl3 = BitmapFactory.decodeResource(mRes, R.drawable.red_button_lvl3);
+        Bitmap greenButton_lvl3 = BitmapFactory.decodeResource(mRes, R.drawable.green_button_lvl3);
+        Bitmap yellowButton_lvl3 = BitmapFactory.decodeResource(mRes, R.drawable.yellow_button_lvl3);
+        Bitmap blueButton_lvl3 = BitmapFactory.decodeResource(mRes, R.drawable.blue_button_lvl3);
+        Bitmap purpleButton_lvl3 = BitmapFactory.decodeResource(mRes, R.drawable.purple_button_lvl3);
+        Bitmap brownButton_lvl3 = BitmapFactory.decodeResource(mRes, R.drawable.brown_button_lvl3);
+
 
         menuBmp = BitmapFactory.decodeResource(mRes, R.drawable.menubutton);
         win = BitmapFactory.decodeResource(mRes, R.drawable.win);
@@ -132,6 +150,7 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         cst2Bitmap.put(CST_yellow, yellow);
         cst2Bitmap.put(CST_blue, blue);
         cst2Bitmap.put(CST_purple, purple);
+        cst2Bitmap.put(CST_brown, brown);
 
         // bitmap for the buttons of the first level
         cst2ButtonBitmap_lvl1.put(CST_red, redButton_lvl1);
@@ -145,6 +164,15 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
         cst2ButtonBitmap_lvl2.put(CST_yellow, yellowButton_lvl2);
         cst2ButtonBitmap_lvl2.put(CST_blue, blueButton_lvl2);
         cst2ButtonBitmap_lvl2.put(CST_purple, purpleButton_lvl2);
+
+        //bitmap for the buttons of the third level
+        cst2ButtonBitmap_lvl3.put(CST_red, redButton_lvl3);
+        cst2ButtonBitmap_lvl3.put(CST_green, greenButton_lvl3);
+        cst2ButtonBitmap_lvl3.put(CST_yellow, yellowButton_lvl3);
+        cst2ButtonBitmap_lvl3.put(CST_blue, blueButton_lvl3);
+        cst2ButtonBitmap_lvl3.put(CST_purple, purpleButton_lvl3);
+        cst2ButtonBitmap_lvl3.put(CST_brown, brownButton_lvl3);
+
 
         // init game parameters
         initparameters(level);
@@ -229,10 +257,18 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 }
             }
         }
-    }
+        else if (a == 3) {
+            for (int i = 0; i < carteHeight; i++) {
+                for (int j = 0; j < carteWidth; j++) {
+                    Case newCase = new Case(ref_lvl3[j][i], j, i);
+                    carte[j][i] = newCase;
+
+                }
+            }
+        }}
 
     // draw win if won
-    private void paintwin(Canvas canvas) {
+    private void paintwin(Canvas canvas ) {
         if (true) {
             canvas.drawBitmap(winGame, carteLeftAnchor + carteTileSize, carteTopAnchor + 2 * carteTileSize, null);
         }
@@ -246,9 +282,9 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
 
     // draw the board
     private void paintcarte(Canvas canvas) {
-        menuButton = new MenuButton(50,50, menuBmp);
+        menuButton = new MenuButton(50, 50, menuBmp);
         //todo find more generic coordinates than 250, 10
-        menuButton.setPosition(250,10);
+        menuButton.setPosition(250, 10);
         menuButton.draw(canvas);
         if (level == 1) {
             for (int i = 0; i < carteHeight; i++) {
@@ -258,9 +294,9 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 }
             }
             // creates the clickable buttons
-            for (int i = 0; i < colors_lvl1.length; i ++) {
+            for (int i = 0; i < colors_lvl1.length; i++) {
                 ColorButton colorButton = new ColorButton(80, 80, cst2ButtonBitmap_lvl1.get(colors_lvl1[i]), colors_lvl1[i]);
-                colorButton.setPosition(80 * i, getHeight() - carteTileSize);
+                colorButton.setPosition(80 * i, getHeight() - carteTileSize*2);
                 colorButton.draw(canvas);
                 this.colorButtons_lvl1[i] = colorButton;
             }
@@ -273,15 +309,29 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
                 }
             }
             // creates the clickable buttons
-            for (int i = 0; i < colors_lvl2.length; i ++) {
+            for (int i = 0; i < colors_lvl2.length; i++) {
                 ColorButton colorButton = new ColorButton(60, 60, cst2ButtonBitmap_lvl2.get(colors_lvl2[i]), colors_lvl2[i]);
                 colorButton.setPosition(carteLeftAnchor + 60 * i, getHeight() - carteTileSize);
                 colorButton.draw(canvas);
                 this.colorButtons_lvl2[i] = colorButton;
             }
         }
+        if (level == 3) {
+            for (int i = 0; i < carteHeight; i++) {
+                for (int j = 0; j < carteWidth; j++) {
+                    Bitmap currentBitmap = cst2Bitmap.get(carte[i][j].CSTcolor);
+                    canvas.drawBitmap(currentBitmap, carteLeftAnchor + j * carteTileSize, carteTopAnchor + i * carteTileSize, null);
+                }
+            }
+            for (int i = 0; i < colors_lvl3.length; i++) {
+                ColorButton colorButton = new ColorButton(50, 50, cst2ButtonBitmap_lvl3.get(colors_lvl3[i]), colors_lvl3[i]);
+                colorButton.setPosition(carteLeftAnchor + 50 * i, getHeight() - carteTileSize);
+                colorButton.draw(canvas);
+                this.colorButtons_lvl3[i] = colorButton;
+            }
 
 
+        }
     }
 
     // game is won if every case is found (ie of the same color as the others)
@@ -475,6 +525,14 @@ public class ColorFlood extends SurfaceView implements SurfaceHolder.Callback, R
             for (ColorButton aColorButtons_lvl2 : colorButtons_lvl2) {
                 if (aColorButtons_lvl2.btn_rect.contains(pos_x, pos_y)) {
                     int userColor = aColorButtons_lvl2.colorID;
+                    oneTurn(userColor);
+                }
+            }
+        }
+        else if (level == 3) {
+            for (ColorButton aColorButtons_lvl3 : colorButtons_lvl3) {
+                if (aColorButtons_lvl3.btn_rect.contains(pos_x, pos_y)) {
+                    int userColor = aColorButtons_lvl3.colorID;
                     oneTurn(userColor);
                 }
             }

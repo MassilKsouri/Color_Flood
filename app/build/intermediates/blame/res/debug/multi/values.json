@@ -510,7 +510,14 @@
                     "endOffset": 594
                 },
                 "from": {
-                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml"
+                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 117,
+                        "endColumn": 47,
+                        "endOffset": 160
+                    }
                 }
             },
             {
@@ -522,7 +529,14 @@
                     "endOffset": 653
                 },
                 "from": {
-                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml"
+                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 58,
+                        "endOffset": 111
+                    }
                 }
             },
             {
@@ -534,7 +548,14 @@
                     "endOffset": 695
                 },
                 "from": {
-                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml"
+                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 212,
+                        "endColumn": 41,
+                        "endOffset": 249
+                    }
                 }
             },
             {
@@ -546,7 +567,14 @@
                     "endOffset": 740
                 },
                 "from": {
-                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml"
+                    "file": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 166,
+                        "endColumn": 44,
+                        "endOffset": 206
+                    }
                 }
             }
         ]
