@@ -34,29 +34,29 @@ public final class R {
         public static final int green_button_lvl1=0x7f020005;
         public static final int green_button_lvl2=0x7f020006;
         public static final int icon=0x7f020007;
-        public static final int mic_off=0x7f020008;
-        public static final int mic_on=0x7f020009;
-        public static final int purple=0x7f02000a;
-        public static final int purple_button_lvl2=0x7f02000b;
-        public static final int red=0x7f02000c;
-        public static final int red_button_lvl1=0x7f02000d;
-        public static final int red_button_lvl2=0x7f02000e;
-        public static final int vide=0x7f02000f;
-        public static final int win=0x7f020010;
-        public static final int yellow=0x7f020011;
-        public static final int yellow_button_lvl1=0x7f020012;
-        public static final int yellow_button_lvl2=0x7f020013;
+        public static final int lost=0x7f020008;
+        public static final int mic_off=0x7f020009;
+        public static final int mic_on=0x7f02000a;
+        public static final int purple=0x7f02000b;
+        public static final int purple_button_lvl2=0x7f02000c;
+        public static final int red=0x7f02000d;
+        public static final int red_button_lvl1=0x7f02000e;
+        public static final int red_button_lvl2=0x7f02000f;
+        public static final int vide=0x7f020010;
+        public static final int win=0x7f020011;
+        public static final int yellow=0x7f020012;
+        public static final int yellow_button_lvl1=0x7f020013;
+        public static final int yellow_button_lvl2=0x7f020014;
     }
     public static final class id {
         public static final int ColorFloodView=0x7f070000;
-        public static final int buinfo=0x7f070008;
-        public static final int buplay=0x7f070006;
-        public static final int linearLayout=0x7f070007;
-        public static final int menu=0x7f070003;
-        public static final int textView=0x7f070004;
-        public static final int textView37=0x7f070005;
-        public static final int turn=0x7f070001;
-        public static final int turnCounter=0x7f070002;
+        public static final int buinfo=0x7f070007;
+        public static final int buplay=0x7f070004;
+        public static final int butrain=0x7f070006;
+        public static final int linearLayout=0x7f070005;
+        public static final int menu=0x7f070001;
+        public static final int textView=0x7f070002;
+        public static final int textView37=0x7f070003;
     }
     public static final class layout {
         public static final int main=0x7f030000;

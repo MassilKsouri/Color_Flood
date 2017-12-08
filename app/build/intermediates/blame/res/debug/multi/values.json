@@ -1,5 +1,295 @@
 [
     {
+        "outputFile": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 38,
+                    "endOffset": 89
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 408,
+                        "endColumn": 38,
+                        "endOffset": 442
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 94,
+                    "endColumn": 39,
+                    "endOffset": 129
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 327,
+                        "endColumn": 39,
+                        "endOffset": 362
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 134,
+                    "endColumn": 40,
+                    "endOffset": 170
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 285,
+                        "endColumn": 40,
+                        "endOffset": 321
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 175,
+                    "endColumn": 38,
+                    "endOffset": 209
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 368,
+                        "endColumn": 38,
+                        "endOffset": 402
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 214,
+                    "endColumn": 37,
+                    "endOffset": 247
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 246,
+                        "endColumn": 37,
+                        "endOffset": 279
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 252,
+                    "endColumn": 40,
+                    "endOffset": 288
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 204,
+                        "endColumn": 40,
+                        "endOffset": 240
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 293,
+                    "endColumn": 45,
+                    "endOffset": 334
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 157,
+                        "endColumn": 45,
+                        "endOffset": 198
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 339,
+                    "endColumn": 46,
+                    "endOffset": 381
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 46,
+                        "endOffset": 99
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 386,
+                    "endColumn": 50,
+                    "endOffset": 432
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 105,
+                        "endColumn": 50,
+                        "endOffset": 151
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 437,
+                    "endColumn": 57,
+                    "endOffset": 490
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 90,
+                        "endColumn": 57,
+                        "endOffset": 143
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 495,
+                    "endColumn": 55,
+                    "endOffset": 546
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 149,
+                        "endColumn": 55,
+                        "endOffset": 200
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 551,
+                    "endColumn": 47,
+                    "endOffset": 594
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 117,
+                        "endColumn": 47,
+                        "endOffset": 160
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 599,
+                    "endColumn": 58,
+                    "endOffset": 653
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 58,
+                        "endOffset": 111
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 658,
+                    "endColumn": 41,
+                    "endOffset": 695
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 212,
+                        "endColumn": 41,
+                        "endOffset": 249
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 700,
+                    "endColumn": 44,
+                    "endOffset": 740
+                },
+                "from": {
+                    "file": "C:\\Users\\Billal\\AndroidStudioProjects\\Color_Flood-Fork\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 166,
+                        "endColumn": 44,
+                        "endOffset": 206
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "C:\\Users\\TheNightKing\\Downloads\\Compressed\\Test\\Color_Flood\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
         "map": [
             {

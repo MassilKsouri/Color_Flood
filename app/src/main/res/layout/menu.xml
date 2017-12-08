@@ -63,7 +63,16 @@
         </LinearLayout>
 
         <Button
-            android:text="info"
+            android:text="Train Mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/butrain"
+            android:background="@color/Orange"
+            android:layout_marginTop="51dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:text="About"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buinfo"
